@@ -1,0 +1,28 @@
+# EXAMPLE USAGE:
+#
+#   Refer for explanation to following link:
+#   https://github.com/evilmartians/lefthook/blob/master/docs/configuration.md
+#
+# pre-push:
+#   commands:
+#     packages-audit:
+#       tags: frontend security
+#       run: yarn audit
+#     gems-audit:
+#       tags: backend security
+#       run: bundle audit
+#
+pre-commit:
+  parallel: false
+  piped: true
+  commands:
+    1_lint:
+      run: pnpm eslint --no-warn-ignored --fix {staged_files}
+    2_format:
+      run: pnpm prettier --write {staged_files}
+    3_add:
+      run: git add {staged_files}
+commit-msg:
+  scripts:
+    'commitlint.sh':
+      runner: bash

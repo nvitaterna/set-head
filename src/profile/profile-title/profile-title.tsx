@@ -1,0 +1,78 @@
+import { Flex, Switch, TextInput, useMantineTheme } from '@mantine/core';
+import { FC } from 'react';
+
+import { DeleteConfirmButton } from '@/delete-confirm-button/delete-confirm-button';
+import { PopupColorPicker } from '@/popup-color-picker/popup-color-picker';
+
+import { useProfileContext } from '../profile-context/profile-context';
+
+interface ProfileTitleProps {
+  selectedProfileId: string;
+  setSelectedProfileId: (id: string | null) => void;
+}
+
+export const ProfileTitle: FC<ProfileTitleProps> = ({
+  selectedProfileId,
+  setSelectedProfileId,
+}) => {
+  const theme = useMantineTheme();
+  const { profiles, updateProfile, deleteProfile } = useProfileContext();
+
+  const profile = profiles.find((p) => p.id === selectedProfileId);
+
+  if (!profile) {
+    return null;
+  }
+
+  const onClickDelete = async () => {
+    const firstProfile = profiles.find((p) => p.id !== profile.id);
+    setSelectedProfileId(firstProfile?.id || null);
+    await deleteProfile(profile.id);
+  };
+
+  return (
+    <Flex
+      style={{ flexGrow: 1 }}
+      direction="row"
+      align="center"
+      justify={'normal'}
+      gap="sm">
+      <Switch
+        color={theme.colors.green[6]}
+        checked={profile.active}
+        onChange={(event) => {
+          updateProfile({
+            ...profile,
+            active: event.currentTarget.checked,
+          });
+        }}
+      />
+
+      <TextInput
+        variant="underline"
+        style={{ flexGrow: 1 }}
+        value={profile.name || ''}
+        onChange={(event) => {
+          updateProfile({
+            ...profile,
+            name: event.currentTarget.value,
+          });
+        }}
+      />
+
+      <PopupColorPicker
+        value={profile.color || ''}
+        onChange={(value) => {
+          updateProfile({
+            ...profile,
+            color: value,
+          });
+        }}
+      />
+      <DeleteConfirmButton
+        confirmMessage={`Are you sure you want to delete "${profile.name}"?`}
+        onClick={onClickDelete}
+      />
+    </Flex>
+  );
+};
