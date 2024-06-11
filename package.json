@@ -23,7 +23,7 @@
     "zip:firefox": "wxt zip -b firefox",
     "zip:edge": "wxt zip -b edge",
     "compile": "tsc --noEmit",
-    "postinstall": "wxt prepare"
+    "postinstall": "wxt prepare && lefthook install"
   },
   "dependencies": {
     "@mantine/core": "^7.10.1",
