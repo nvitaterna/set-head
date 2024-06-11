@@ -1,7 +1,9 @@
 import { Card, Flex, Switch, TextInput, useMantineTheme } from '@mantine/core';
 import { FC } from 'react';
 
+import { CreateButton } from '@/create-button/create-button';
 import { DeleteConfirmButton } from '@/delete-confirm-button/delete-confirm-button';
+import { useHeaderContext } from '@/header/header-context/header-context';
 import { PopupColorPicker } from '@/popup-color-picker/popup-color-picker';
 
 import { useProfileContext } from '../profile-context/profile-context';
@@ -17,6 +19,7 @@ export const ProfileTitle: FC<ProfileTitleProps> = ({
 }) => {
   const theme = useMantineTheme();
   const { profiles, updateProfile, deleteProfile } = useProfileContext();
+  const { createHeader } = useHeaderContext();
 
   const profile = profiles.find((p) => p.id === selectedProfileId);
 
@@ -40,6 +43,8 @@ export const ProfileTitle: FC<ProfileTitleProps> = ({
         direction="row"
         align="center"
         gap="xs">
+        <CreateButton onClick={() => createHeader()} />
+
         <Switch
           color={theme.colors.green[6]}
           checked={profile.active}

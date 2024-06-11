@@ -32,14 +32,17 @@ describe('ProfilePage', () => {
     const selectedProfileId = faker.helpers.arrayElement(profiles).id;
 
     renderWithProfileContext(
-      <ProfilePage selectedProfileId={selectedProfileId} />,
+      <ProfilePage
+        selectedProfileId={selectedProfileId}
+        setSelectedProfileId={vi.fn()}
+      />,
       { profiles },
     );
 
     await waitFor(() => {
       expect(
         screen.getByText(
-          'You can modify requests and responses by clicking on the plus button in the bottom right corner.',
+          'You can modify requests and responses by clicking on the plus button in the top left corner.',
         ),
       ).toBeInTheDocument();
     });
@@ -61,7 +64,10 @@ describe('ProfilePage', () => {
     });
 
     renderWithProfileContext(
-      <ProfilePage selectedProfileId={selectedProfileId} />,
+      <ProfilePage
+        selectedProfileId={selectedProfileId}
+        setSelectedProfileId={vi.fn()}
+      />,
       { profiles },
     );
 
@@ -88,7 +94,10 @@ describe('ProfilePage', () => {
     });
 
     renderWithProfileContext(
-      <ProfilePage selectedProfileId={selectedProfileId} />,
+      <ProfilePage
+        selectedProfileId={selectedProfileId}
+        setSelectedProfileId={vi.fn()}
+      />,
       { profiles },
     );
 
@@ -98,6 +107,25 @@ describe('ProfilePage', () => {
 
     await waitFor(() => {
       expect(createHeader).toHaveBeenCalled();
+    });
+  });
+
+  it('should show the create button', async () => {
+    const profiles = mockProfiles(2);
+    const selectedProfileId = faker.helpers.arrayElement(profiles).id;
+
+    renderWithProfileContext(
+      <ProfilePage
+        selectedProfileId={selectedProfileId}
+        setSelectedProfileId={vi.fn()}
+      />,
+      { profiles },
+    );
+
+    await waitFor(() => {
+      expect(
+        screen.getByRole('button', { name: 'Create' }),
+      ).toBeInTheDocument();
     });
   });
 });
