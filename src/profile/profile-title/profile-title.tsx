@@ -1,4 +1,4 @@
-import { Flex, Switch, TextInput, useMantineTheme } from '@mantine/core';
+import { Card, Flex, Switch, TextInput, useMantineTheme } from '@mantine/core';
 import { FC } from 'react';
 
 import { DeleteConfirmButton } from '@/delete-confirm-button/delete-confirm-button';
@@ -31,48 +31,52 @@ export const ProfileTitle: FC<ProfileTitleProps> = ({
   };
 
   return (
-    <Flex
-      style={{ flexGrow: 1 }}
-      direction="row"
-      align="center"
-      justify={'normal'}
-      gap="xs">
-      <Switch
-        color={theme.colors.green[6]}
-        checked={profile.active}
-        onChange={(event) => {
-          updateProfile({
-            ...profile,
-            active: event.currentTarget.checked,
-          });
+    <Card p="xs" color={'red'} radius={0}>
+      <Flex
+        style={{
+          flexGrow: 1,
         }}
-      />
+        h="100%"
+        direction="row"
+        align="center"
+        gap="xs">
+        <Switch
+          color={theme.colors.green[6]}
+          checked={profile.active}
+          onChange={(event) => {
+            updateProfile({
+              ...profile,
+              active: event.currentTarget.checked,
+            });
+          }}
+        />
 
-      <TextInput
-        variant="underline"
-        style={{ flexGrow: 1 }}
-        value={profile.name || ''}
-        onChange={(event) => {
-          updateProfile({
-            ...profile,
-            name: event.currentTarget.value,
-          });
-        }}
-      />
+        <TextInput
+          variant="underline"
+          style={{ flexGrow: 1 }}
+          value={profile.name || ''}
+          onChange={(event) => {
+            updateProfile({
+              ...profile,
+              name: event.currentTarget.value,
+            });
+          }}
+        />
 
-      <PopupColorPicker
-        value={profile.color || ''}
-        onChange={(value) => {
-          updateProfile({
-            ...profile,
-            color: value,
-          });
-        }}
-      />
-      <DeleteConfirmButton
-        confirmMessage={`Are you sure you want to delete "${profile.name}"?`}
-        onClick={onClickDelete}
-      />
-    </Flex>
+        <PopupColorPicker
+          value={profile.color || ''}
+          onChange={(value) => {
+            updateProfile({
+              ...profile,
+              color: value,
+            });
+          }}
+        />
+        <DeleteConfirmButton
+          confirmMessage={`Are you sure you want to delete "${profile.name}"?`}
+          onClick={onClickDelete}
+        />
+      </Flex>
+    </Card>
   );
 };
