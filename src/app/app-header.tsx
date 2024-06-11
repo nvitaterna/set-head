@@ -17,7 +17,6 @@ export const AppHeader: FC<PropsWithChildren> = () => {
     <Flex
       role="toolbar"
       direction="row"
-      h={60}
       justify="flex-start"
       align="center"
       w="100%"
@@ -26,11 +25,12 @@ export const AppHeader: FC<PropsWithChildren> = () => {
       style={{
         borderBottom: `1px solid ${theme.colors.dark[4]}`,
       }}>
-      <SetheadLogo fit="contain" mah="100%" />
+      <SetheadLogo fit="contain" h={26} />
       <Button
         style={{
           flexGrow: 1,
         }}
+        size="compact-sm"
         onClick={createProfile}
         rightSection={<IconPlus />}>
         Create Profile
@@ -39,6 +39,7 @@ export const AppHeader: FC<PropsWithChildren> = () => {
         style={{
           flexGrow: 1,
         }}
+        size="compact-sm"
         onClick={() => onClickToggleAll(true)}
         variant="light"
         color="green"
@@ -49,6 +50,7 @@ export const AppHeader: FC<PropsWithChildren> = () => {
         style={{
           flexGrow: 1,
         }}
+        size="compact-sm"
         onClick={() => onClickToggleAll(false)}
         variant="light"
         color="red"
