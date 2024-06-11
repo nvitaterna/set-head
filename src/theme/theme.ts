@@ -1,6 +1,6 @@
 import { createTheme, TextInput } from '@mantine/core';
 
-import classes from './input.module.css';
+import classes from './input.module.scss';
 
 export const theme = createTheme({
   components: {
