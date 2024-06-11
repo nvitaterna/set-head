@@ -8,7 +8,7 @@ export const HeaderList: FC = () => {
   const { headers } = useHeaderContext();
 
   return (
-    <Flex gap="xs" direction="column" px="xs" role="list" style={{}}>
+    <Flex direction="column" px="xs" role="list" style={{}}>
       {headers.map((header) => (
         <HeaderListItem key={header.id} header={header} />
       ))}

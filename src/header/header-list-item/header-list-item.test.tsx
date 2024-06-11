@@ -23,6 +23,24 @@ describe('HeaderListItem', () => {
     });
   });
 
+  it('updates header active state', async () => {
+    const user = userEvent.setup();
+    const header = mockHeader();
+    const updateHeaderStoreValue = vi.fn();
+
+    renderWithHeaderContext(<HeaderListItem header={header} />, '1', {
+      updateHeaderStoreValue,
+    });
+
+    const checkbox = screen.getByRole('switch');
+
+    await user.click(checkbox);
+
+    await waitFor(() => {
+      expect(updateHeaderStoreValue).toHaveBeenCalled();
+    });
+  });
+
   it('updates header name', async () => {
     const user = userEvent.setup();
     const header = mockHeader();

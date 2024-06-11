@@ -1,10 +1,12 @@
 import {
   ActionIcon,
   Flex,
+  Switch,
   Text,
   TextInput,
   ThemeIcon,
   Tooltip,
+  useMantineTheme,
 } from '@mantine/core';
 import { IconExclamationCircle, IconX } from '@tabler/icons-react';
 import { FC } from 'react';
@@ -25,6 +27,8 @@ export const HeaderListItem: FC<HeaderListItemProps> = ({ header }) => {
     setStoreValue,
     deleteHeader,
   } = useHeaderContext();
+
+  const theme = useMantineTheme();
 
   const validateHeader = headerSchema.safeParse(header);
 
@@ -51,7 +55,17 @@ export const HeaderListItem: FC<HeaderListItemProps> = ({ header }) => {
   };
 
   return (
-    <Flex direction="row" align="center" gap="xs" role="listitem">
+    <Flex py="xs" direction="row" align="center" gap="xs" role="listitem">
+      <Switch
+        color={theme.colors.green[6]}
+        checked={header.active}
+        onChange={(event) => {
+          updateHeaderStoreValue({
+            ...header,
+            active: event.currentTarget.checked,
+          });
+        }}
+      />
       <Flex
         direction="row"
         align="center"
