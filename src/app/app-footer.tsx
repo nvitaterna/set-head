@@ -5,7 +5,7 @@ import { FC, PropsWithChildren } from 'react';
 import { useProfileContext } from '@/profile/profile-context/profile-context';
 import { SetheadLogo } from '@/sethead-logo/sethead-logo';
 
-export const AppHeader: FC<PropsWithChildren> = () => {
+export const AppFooter: FC<PropsWithChildren> = () => {
   const theme = useMantineTheme();
   const { profiles, updateProfiles, createProfile } = useProfileContext();
 
@@ -23,13 +23,14 @@ export const AppHeader: FC<PropsWithChildren> = () => {
       gap="md"
       p="xs"
       style={{
-        borderBottom: `1px solid ${theme.colors.dark[4]}`,
+        borderTop: `1px solid ${theme.colors.dark[4]}`,
       }}>
       <SetheadLogo fit="contain" h={26} />
       <Button
         style={{
           flexGrow: 1,
         }}
+        variant="light"
         size="compact-sm"
         onClick={createProfile}
         rightSection={<IconPlus />}>

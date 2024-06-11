@@ -5,11 +5,11 @@ import { mockProfiles } from '@/test-utils/mock-profile';
 import { renderWithProfileContext } from '@/test-utils/render-with-profile-context';
 import { screen, waitFor } from '@/test-utils/testing-library';
 
-import { AppHeader } from './app-header';
+import { AppFooter } from './app-footer';
 
-describe('AppHeader', () => {
+describe('AppFooter', () => {
   it('renders the Sethead logo', async () => {
-    renderWithProfileContext(<AppHeader />);
+    renderWithProfileContext(<AppFooter />);
     await waitFor(() => {
       expect(screen.getByAltText('Sethead')).toBeInTheDocument();
     });
@@ -18,7 +18,7 @@ describe('AppHeader', () => {
   it('should create a new profile when the create profile button is clicked', async () => {
     const user = userEvent.setup();
     const createProfile = vi.fn();
-    renderWithProfileContext(<AppHeader />, { createProfile });
+    renderWithProfileContext(<AppFooter />, { createProfile });
 
     await user.click(screen.getByText('Create Profile'));
 
@@ -32,7 +32,7 @@ describe('AppHeader', () => {
     const updateProfiles = vi.fn();
     const profiles = mockProfiles(3);
 
-    renderWithProfileContext(<AppHeader />, { updateProfiles, profiles });
+    renderWithProfileContext(<AppFooter />, { updateProfiles, profiles });
 
     await user.click(screen.getByText('Enable All Profiles'));
 
@@ -48,7 +48,7 @@ describe('AppHeader', () => {
     const updateProfiles = vi.fn();
     const profiles = mockProfiles(3);
 
-    renderWithProfileContext(<AppHeader />, { updateProfiles, profiles });
+    renderWithProfileContext(<AppFooter />, { updateProfiles, profiles });
 
     await user.click(screen.getByText('Disable All Profiles'));
 

@@ -9,7 +9,7 @@ export const WelcomePage: FC<WelcomePageProps> = () => {
       <Title order={2}>Welcome to Sethead!</Title>
       <Text>
         You can create a new profile by clicking on the create profile button
-        above.
+        below.
       </Text>
     </Card>
   );

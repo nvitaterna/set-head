@@ -8,7 +8,7 @@ import { ProfilePage } from '@/profile/profile-page/profile-page';
 import { ProfileTitle } from '@/profile/profile-title/profile-title';
 import { useProfileStorage } from '@/profile/use-profile-storage';
 
-import { AppHeader } from './app-header';
+import { AppFooter } from './app-footer';
 import { AppMain } from './app-main';
 import { AppSidebar } from './app-sidebar';
 import { WelcomePage } from './welcome-page';
@@ -54,21 +54,6 @@ export const App = () => {
           width: 720,
           height: 480,
         }}>
-        <AppHeader>
-          <ActionIcon
-            variant="subtle"
-            onClick={createProfile}
-            aria-label="Add profile"
-            size="lg">
-            <IconPlus />
-          </ActionIcon>
-          {selectedProfileId ? (
-            <ProfileTitle
-              selectedProfileId={selectedProfileId}
-              setSelectedProfileId={setSelectedProfileId}
-            />
-          ) : null}
-        </AppHeader>
         <Flex direction="row" h="100%" style={{ overflow: 'hidden' }}>
           <AppSidebar>
             {profiles?.length && selectedProfileId ? (
@@ -89,6 +74,22 @@ export const App = () => {
             )}
           </AppMain>
         </Flex>
+
+        <AppFooter>
+          <ActionIcon
+            variant="subtle"
+            onClick={createProfile}
+            aria-label="Add profile"
+            size="lg">
+            <IconPlus />
+          </ActionIcon>
+          {selectedProfileId ? (
+            <ProfileTitle
+              selectedProfileId={selectedProfileId}
+              setSelectedProfileId={setSelectedProfileId}
+            />
+          ) : null}
+        </AppFooter>
       </Flex>
     </ProfileContext.Provider>
   );

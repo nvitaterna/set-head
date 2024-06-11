@@ -1,7 +1,6 @@
-import { Card, Flex, Text } from '@mantine/core';
+import { Card, Flex, ScrollArea, Text } from '@mantine/core';
 import { FC } from 'react';
 
-import { CreateButton } from '@/create-button/create-button';
 import { HeaderContext } from '@/header/header-context/header-context';
 import { HeaderList } from '@/header/header-list/header-list';
 import { useHeaderStorage } from '@/header/use-header-storage';
@@ -47,23 +46,24 @@ export const ProfilePage: FC<ProfilePageProps> = ({
         deleteHeader,
         isLoading,
       }}>
-      <Flex direction="column" gap="md">
+      <Flex direction="column" gap="xs" h="100%">
         <ProfileTitle
           selectedProfileId={selectedProfileId}
           setSelectedProfileId={setSelectedProfileId}
         />
-        {headers?.length ? (
-          <HeaderList />
-        ) : (
-          <Card styles={{}} shadow="xs" p="md" h="100">
-            <Text>
-              You can modify requests and responses by clicking on the plus
-              button in the bottom right corner.
-            </Text>
-          </Card>
-        )}
+        <ScrollArea.Autosize scrollbarSize="0.5rem" h="100%" mah="100%">
+          {headers?.length ? (
+            <HeaderList />
+          ) : (
+            <Card shadow="xs" p="md" h="100">
+              <Text>
+                You can modify requests and responses by clicking on the plus
+                button in the top left corner.
+              </Text>
+            </Card>
+          )}
+        </ScrollArea.Autosize>
       </Flex>
-      <CreateButton onClick={createHeader} />
     </HeaderContext.Provider>
   );
 };

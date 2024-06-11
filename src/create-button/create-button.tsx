@@ -1,4 +1,4 @@
-import { ActionIcon, Affix, Menu } from '@mantine/core';
+import { ActionIcon, Menu } from '@mantine/core';
 import { IconPlus } from '@tabler/icons-react';
 import { FC } from 'react';
 
@@ -8,16 +8,16 @@ interface CreateButtonProps {
 
 export const CreateButton: FC<CreateButtonProps> = ({ onClick }) => {
   return (
-    <Menu trigger="hover" width={120} position="left-end">
-      <Affix bottom={18} right={20}>
-        <Menu.Target>
-          <ActionIcon size="lg" onClick={onClick} aria-label="Create">
-            <IconPlus />
-          </ActionIcon>
-        </Menu.Target>
-      </Affix>
+    <Menu trigger="hover" width={120} position="left-start">
+      <Menu.Target>
+        <ActionIcon size="md" onClick={onClick} aria-label="Create">
+          <IconPlus />
+        </ActionIcon>
+      </Menu.Target>
       {/* <Menu.Dropdown>
-        <Menu.Item onClick={createHeader}>Header</Menu.Item>
+        <Menu.Item p="0.25rem" onClick={onClick}>
+          Header
+        </Menu.Item>
       </Menu.Dropdown> */}
     </Menu>
   );

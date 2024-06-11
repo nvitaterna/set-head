@@ -16,6 +16,7 @@ describe('App', () => {
       createProfile: () => Promise.resolve(),
       updateProfile: () => Promise.resolve(),
       deleteProfile: () => Promise.resolve(),
+      updateProfiles: () => Promise.resolve(),
     });
   });
 
@@ -53,6 +54,7 @@ describe('App', () => {
         createProfile: () => Promise.resolve(),
         updateProfile: () => Promise.resolve(),
         deleteProfile: () => Promise.resolve(),
+        updateProfiles: () => Promise.resolve(),
       });
 
       render(<App />);
@@ -60,7 +62,7 @@ describe('App', () => {
       await waitFor(() => {
         expect(
           screen.getByText(
-            'You can modify requests and responses by clicking on the plus button in the bottom right corner.',
+            'You can modify requests and responses by clicking on the plus button in the top left corner.',
           ),
         ).toBeInTheDocument();
       });
