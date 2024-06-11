@@ -17,7 +17,6 @@ Upcoming Features:
 
 - import/export profiles
 - URL filters per profile
-- modify request and response bodies
 - modify query parameters
 
 ![SetHead - Modify HTTP request and responses.](docs/assets/marquee.png?raw=true)
