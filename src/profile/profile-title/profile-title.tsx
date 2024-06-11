@@ -36,7 +36,7 @@ export const ProfileTitle: FC<ProfileTitleProps> = ({
       direction="row"
       align="center"
       justify={'normal'}
-      gap="sm">
+      gap="xs">
       <Switch
         color={theme.colors.green[6]}
         checked={profile.active}

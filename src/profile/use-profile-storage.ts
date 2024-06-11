@@ -67,6 +67,7 @@ export const useProfileStorage = () => {
     updateProfile,
     createProfile,
     deleteProfile,
+    updateProfiles: setProfiles,
     isLoading,
   };
 };
