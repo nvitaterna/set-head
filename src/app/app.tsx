@@ -14,8 +14,14 @@ import { AppSidebar } from './app-sidebar';
 import { WelcomePage } from './welcome-page';
 
 export const App = () => {
-  const { profiles, isLoading, createProfile, updateProfile, deleteProfile } =
-    useProfileStorage();
+  const {
+    profiles,
+    isLoading,
+    createProfile,
+    updateProfile,
+    deleteProfile,
+    updateProfiles,
+  } = useProfileStorage();
 
   const [selectedProfileId, setSelectedProfileId] = useState<string | null>(
     profiles?.[0]?.id || null,
@@ -40,6 +46,7 @@ export const App = () => {
         createProfile,
         updateProfile,
         deleteProfile,
+        updateProfiles,
       }}>
       <Flex
         direction="column"
@@ -73,7 +80,10 @@ export const App = () => {
           </AppSidebar>
           <AppMain>
             {isLoading ? null : selectedProfileId ? (
-              <ProfilePage selectedProfileId={selectedProfileId} />
+              <ProfilePage
+                selectedProfileId={selectedProfileId}
+                setSelectedProfileId={setSelectedProfileId}
+              />
             ) : (
               <WelcomePage />
             )}

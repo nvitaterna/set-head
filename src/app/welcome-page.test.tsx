@@ -14,7 +14,7 @@ describe('Welcome Page', () => {
     render(<WelcomePage />);
     expect(
       screen.getByText(
-        'You can create a new profile by clicking on the plus icon in the title bar.',
+        'You can create a new profile by clicking on the create profile button above.',
       ),
     ).toBeInTheDocument();
   });
