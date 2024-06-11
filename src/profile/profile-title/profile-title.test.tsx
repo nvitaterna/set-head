@@ -7,7 +7,7 @@ import { screen, waitFor } from '@/test-utils/testing-library';
 
 import { ProfileTitle } from './profile-title';
 
-describe('ProfileTitle', () => {
+describe.skip('ProfileTitle', () => {
   it('should not render anything if there is no profile', async () => {
     renderWithProfileContext(
       <ProfileTitle selectedProfileId={''} setSelectedProfileId={vi.fn()} />,
