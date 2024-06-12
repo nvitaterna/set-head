@@ -69,7 +69,7 @@
   },
   "commit-and-tag-version": {
     "scripts": {
-      "prerelease": "pnpm build",
+      "prerelease": "pnpm test && pnpm build",
       "prebunp": "git fetch --tags"
     }
   }
