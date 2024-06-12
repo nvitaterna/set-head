@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.1.3](https://github.com/nvitaterna/set-head/compare/v0.1.2...v0.1.3) (2024-06-12)
+
+
+### Features
+
+* remember selected profile ([#10](https://github.com/nvitaterna/set-head/issues/10)) ([5601761](https://github.com/nvitaterna/set-head/commit/56017619ce72e6877777285e4258849cff2bd8da))
+
 ## [0.1.2](https://github.com/nvitaterna/set-head/compare/v0.1.1...v0.1.2) (2024-06-11)
 
 ### Features
