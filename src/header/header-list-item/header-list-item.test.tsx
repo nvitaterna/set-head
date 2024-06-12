@@ -32,7 +32,7 @@ describe('HeaderListItem', () => {
       updateHeaderStoreValue,
     });
 
-    const checkbox = screen.getByRole('switch');
+    const checkbox = screen.getByRole('checkbox');
 
     await user.click(checkbox);
 
