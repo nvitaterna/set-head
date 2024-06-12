@@ -1,7 +1,7 @@
 {
   "name": "set-head",
   "displayName": "SetHead",
-  "version": "0.1.3",
+  "version": "0.1.2",
   "description": "A simple tool used to modify HTTP requests and responses.",
   "author": "Nicolas Vitaterna <nvitaterna@gmail.com>",
   "private": true,
@@ -69,8 +69,7 @@
   },
   "commit-and-tag-version": {
     "scripts": {
-      "prerelease": "pnpm test && pnpm build",
-      "prebunp": "git fetch --tags"
+      "prerelease": "pnpm test && pnpm build"
     }
   }
 }
