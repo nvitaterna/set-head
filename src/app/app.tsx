@@ -1,6 +1,5 @@
 import { ActionIcon, Flex } from '@mantine/core';
 import { IconPlus } from '@tabler/icons-react';
-import { useEffect, useState } from 'react';
 
 import { ProfileContext } from '@/profile/profile-context/profile-context';
 import { ProfileNav } from '@/profile/profile-nav/profile-nav';
@@ -21,22 +20,9 @@ export const App = () => {
     updateProfile,
     deleteProfile,
     updateProfiles,
+    setSelectedProfileId,
+    selectedProfileId,
   } = useProfileStorage();
-
-  const [selectedProfileId, setSelectedProfileId] = useState<string | null>(
-    profiles?.[0]?.id || null,
-  );
-
-  useEffect(() => {
-    if (
-      profiles?.length &&
-      (!selectedProfileId || !profiles.find((p) => p.id === selectedProfileId))
-    ) {
-      setSelectedProfileId(profiles[0].id);
-    } else if (!profiles.length) {
-      setSelectedProfileId(null);
-    }
-  }, [profiles]);
 
   return (
     <ProfileContext.Provider
@@ -47,6 +33,8 @@ export const App = () => {
         updateProfile,
         deleteProfile,
         updateProfiles,
+        setSelectedProfileId,
+        selectedProfileId,
       }}>
       <Flex
         direction="column"

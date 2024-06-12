@@ -20,6 +20,16 @@ export const useProfileStorage = () => {
 
   const profiles = rawProfiles ? rawProfiles : [];
 
+  const selectedProfileId = profiles.find((p) => p.selected)?.id || null;
+
+  if (
+    !selectedProfileId &&
+    !profiles.find((p) => p.id === selectedProfileId) &&
+    profiles.length > 0
+  ) {
+    profiles[0].selected = true;
+  }
+
   const updateProfile = async (profile: ProfileData) => {
     await setProfiles(
       [...profiles].map((p) => {
@@ -39,8 +49,15 @@ export const useProfileStorage = () => {
       name: 'New Profile',
       active: true,
       color,
+      selected: true,
     };
-    await setProfiles([...profiles, { ...profile, id, color }]);
+
+    // set selected to false for all other profiles
+    const existingProfiles = [...profiles].map((p) => {
+      return { ...p, selected: false };
+    });
+
+    await setProfiles([...existingProfiles, { ...profile, id, color }]);
   };
 
   const deleteProfile = async (profileId: string) => {
@@ -56,10 +73,30 @@ export const useProfileStorage = () => {
       for (const key of keysToDelete) {
         await storage.remove(key);
       }
-      await setProfiles([...profiles].filter((p) => p.id !== profileId));
+
+      const existingProfiles = [...profiles].filter((p) => p.id !== profileId);
+
+      const selectedProfile = existingProfiles.find((p) => p.selected);
+
+      if (!selectedProfile && existingProfiles.length > 0) {
+        existingProfiles[0].selected = true;
+      }
+
+      await setProfiles(existingProfiles);
     } catch (error) {
       console.error('Error deleting profile', error);
     }
+  };
+
+  const setSelectedProfileId = async (profileId: string | null) => {
+    await setProfiles(
+      [...profiles].map((p) => {
+        if (p.id === profileId) {
+          return { ...p, selected: true };
+        }
+        return { ...p, selected: false };
+      }),
+    );
   };
 
   return {
@@ -68,6 +105,8 @@ export const useProfileStorage = () => {
     createProfile,
     deleteProfile,
     updateProfiles: setProfiles,
+    setSelectedProfileId,
+    selectedProfileId,
     isLoading,
   };
 };

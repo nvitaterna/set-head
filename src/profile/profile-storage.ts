@@ -7,6 +7,7 @@ export interface ProfileData {
   name: string;
   active: boolean;
   color: string;
+  selected?: boolean;
 }
 
 export const getProfilePrefix = (profileId: string) => `${profileId}_`;

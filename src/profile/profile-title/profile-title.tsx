@@ -13,10 +13,7 @@ interface ProfileTitleProps {
   setSelectedProfileId: (id: string | null) => void;
 }
 
-export const ProfileTitle: FC<ProfileTitleProps> = ({
-  selectedProfileId,
-  setSelectedProfileId,
-}) => {
+export const ProfileTitle: FC<ProfileTitleProps> = ({ selectedProfileId }) => {
   const theme = useMantineTheme();
   const { profiles, updateProfile, deleteProfile } = useProfileContext();
   const { createHeader } = useHeaderContext();
@@ -26,12 +23,6 @@ export const ProfileTitle: FC<ProfileTitleProps> = ({
   if (!profile) {
     return null;
   }
-
-  const onClickDelete = async () => {
-    const firstProfile = profiles.find((p) => p.id !== profile.id);
-    setSelectedProfileId(firstProfile?.id || null);
-    await deleteProfile(profile.id);
-  };
 
   return (
     <Card p="xs" color={'red'} radius={0}>
@@ -79,7 +70,7 @@ export const ProfileTitle: FC<ProfileTitleProps> = ({
         />
         <DeleteConfirmButton
           confirmMessage={`Are you sure you want to delete "${profile.name}"?`}
-          onClick={onClickDelete}
+          onClick={() => deleteProfile(profile.id)}
         />
       </Flex>
     </Card>

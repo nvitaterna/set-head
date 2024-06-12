@@ -65,4 +65,22 @@ describe('useProfileStorage', () => {
 
     expect(result.current.profiles).toEqual([]);
   });
+
+  it('should set the selected profile', async () => {
+    const { result } = renderHook(() => useProfileStorage());
+
+    await waitFor(() => {
+      expect(result.current.profiles).toEqual([]);
+    });
+
+    await act(() => result.current.createProfile());
+
+    expect(result.current.profiles).toHaveLength(1);
+
+    const profile = result.current.profiles[0];
+
+    await act(() => result.current.setSelectedProfileId(profile.id));
+
+    expect(result.current.profiles[0].selected).toEqual(true);
+  });
 });

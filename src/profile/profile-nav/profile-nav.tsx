@@ -14,6 +14,7 @@ export const ProfileNav: FC<ProfileNavProps> = ({
   onClickProfile,
 }) => {
   const { profiles } = useProfileContext();
+
   return (
     <Flex
       p="sm"

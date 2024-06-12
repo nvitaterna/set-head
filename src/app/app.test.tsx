@@ -17,6 +17,8 @@ describe('App', () => {
       updateProfile: () => Promise.resolve(),
       deleteProfile: () => Promise.resolve(),
       updateProfiles: () => Promise.resolve(),
+      selectedProfileId: null,
+      setSelectedProfileId: () => Promise.resolve(),
     });
   });
 
@@ -55,6 +57,8 @@ describe('App', () => {
         updateProfile: () => Promise.resolve(),
         deleteProfile: () => Promise.resolve(),
         updateProfiles: () => Promise.resolve(),
+        selectedProfileId: profiles[0].id,
+        setSelectedProfileId: () => Promise.resolve(),
       });
 
       render(<App />);
