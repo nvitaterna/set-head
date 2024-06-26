@@ -27,3 +27,6 @@ web-ext.config.ts
 
 # Testing
 coverage
+
+# Vitest config timestamp files
+vitest.config.ts.timestamp*
