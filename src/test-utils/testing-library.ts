@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-restricted-imports
 import { render, RenderOptions } from '@testing-library/react';
 import { ReactElement } from 'react';
 
