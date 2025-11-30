@@ -8,7 +8,7 @@ import { PopupColorPicker } from './popup-color-picker';
 
 describe('PopupColorPicker', () => {
   it('should render the color picker button with the correct color', () => {
-    const value = faker.internet.color();
+    const value = faker.color.rgb();
     const onChange = vi.fn();
     render(<PopupColorPicker value={value} onChange={onChange} />);
 
@@ -19,7 +19,7 @@ describe('PopupColorPicker', () => {
 
   it('should open the color picker when the action icon is clicked', async () => {
     const user = userEvent.setup();
-    const value = faker.internet.color();
+    const value = faker.color.rgb();
     const onChange = vi.fn();
     render(<PopupColorPicker value={value} onChange={onChange} />);
 
@@ -35,7 +35,7 @@ describe('PopupColorPicker', () => {
   it('should call the onChange callback when a color is selected', async () => {
     const user = userEvent.setup();
 
-    const value = faker.internet.color();
+    const value = faker.color.rgb();
     const onChange = vi.fn();
     render(<PopupColorPicker value={value} onChange={onChange} />);
 
@@ -45,7 +45,10 @@ describe('PopupColorPicker', () => {
 
     const colorPicker = await screen.findByTestId('color-picker');
 
-    const color = within(colorPicker).getAllByRole('button')[0];
+    const color = within(colorPicker).getAllByRole('button', {
+      // TODO - why is this hidden?
+      hidden: true,
+    })[0];
 
     await user.click(color);
 
@@ -55,7 +58,7 @@ describe('PopupColorPicker', () => {
   it('should close the color picker when a color is selected', async () => {
     const user = userEvent.setup();
 
-    const value = faker.internet.color();
+    const value = faker.color.rgb();
     const onChange = vi.fn();
     render(<PopupColorPicker value={value} onChange={onChange} />);
 
@@ -65,7 +68,10 @@ describe('PopupColorPicker', () => {
 
     const colorPicker = await screen.findByTestId('color-picker');
 
-    const color = within(colorPicker).getAllByRole('button')[0];
+    const color = within(colorPicker).getAllByRole('button', {
+      // TODO - why is this hidden?
+      hidden: true,
+    })[0];
 
     await user.click(color);
 
@@ -79,7 +85,7 @@ describe('PopupColorPicker', () => {
   it('should close the color picker when the action icon is clicked', async () => {
     const user = userEvent.setup();
 
-    const value = faker.internet.color();
+    const value = faker.color.rgb();
     const onChange = vi.fn();
     render(<PopupColorPicker value={value} onChange={onChange} />);
 

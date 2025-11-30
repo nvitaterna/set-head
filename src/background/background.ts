@@ -20,6 +20,7 @@ export class Background {
 
     profiles?.forEach((profile) => {
       this.headerService.onProfileHeadersChanged(profile.id, async () => {
+        console.log('PROFILE HEADERS CHANGED', profile.id);
         await this.updateHeaders();
       });
     });

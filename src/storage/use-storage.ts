@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import { StorageAdapter } from './storage-adapter';
+import { BrowserStorage } from './browser-storage';
 
 interface UseStorageArgs {
   key: string;
-  instance: StorageAdapter;
+  instance: BrowserStorage;
 }
 
 type UseStorageReturn<T = unknown> = [

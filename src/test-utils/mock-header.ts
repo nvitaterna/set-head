@@ -17,5 +17,11 @@ export const mockHeaders = (
   count: number,
   data?: Partial<HeaderData>,
 ): HeaderData[] => {
-  return Array.from({ length: count }, () => mockHeader(data));
+  const arr: HeaderData[] = [];
+
+  for (let i = 0; i < count; i++) {
+    arr.push(mockHeader(data));
+  }
+
+  return arr;
 };

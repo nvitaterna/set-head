@@ -17,15 +17,13 @@ export const AppFooter: FC<PropsWithChildren> = () => {
     <Flex
       role="toolbar"
       direction="row"
-      justify="flex-start"
-      align="center"
       w="100%"
       gap="md"
       p="xs"
       style={{
         borderTop: `1px solid ${theme.colors.dark[4]}`,
       }}>
-      <SetheadLogo fit="contain" h={26} />
+      <SetheadLogo fit="contain" h={26} w={26} />
       <Button
         style={{
           flexGrow: 1,
@@ -33,6 +31,7 @@ export const AppFooter: FC<PropsWithChildren> = () => {
         variant="light"
         size="compact-sm"
         onClick={createProfile}
+        fullWidth
         rightSection={<IconPlus />}>
         Create Profile
       </Button>
@@ -44,6 +43,7 @@ export const AppFooter: FC<PropsWithChildren> = () => {
         onClick={() => onClickToggleAll(true)}
         variant="light"
         color="green"
+        fullWidth
         disabled={profiles.length === 0}>
         Enable All Profiles
       </Button>
@@ -55,6 +55,7 @@ export const AppFooter: FC<PropsWithChildren> = () => {
         onClick={() => onClickToggleAll(false)}
         variant="light"
         color="red"
+        fullWidth
         disabled={profiles.length === 0}>
         Disable All Profiles
       </Button>
